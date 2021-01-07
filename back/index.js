@@ -19,6 +19,7 @@ app.listen(port, () => {
 
 
 
+
 // Регистрация путей
 const persons = require('./routes/api/persons')
 app.use('/api/persons', persons)
@@ -42,6 +43,9 @@ app.use('/api/owners', owners)
 
 const services = require('./routes/api/services')
 app.use('/api/services', services)
+
+const sortServices = require('./routes/api/sortServices')
+app.use('/api/sortServices', sortServices)
 
 
 

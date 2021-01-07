@@ -42,12 +42,8 @@ try{
                     WHERE service.state = 1`, 
                                    // join price_list on service.price_list_id = price_list.id
             (err, rows) => {
-                if(err){
-                    console.log('Error query')
-                } else {
-                    console.log("Query success")
+                    console.log(err === true?'Error query': 'Query success')
                     res.send(rows)
-                }
             })
 } catch(e){
     console.log(e);

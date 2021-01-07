@@ -33,13 +33,8 @@ router.get('/', async (req, res) => {
         car join owner on car.owner_id = owner.id 
     WHERE car.state = 1`, 
         (err, rows) => {
-      
-            if(err){
-                console.log('Error query')
-            } else {
-                console.log("Query success")
-                res.send(rows)
-            }
+            console.log(err === true?'Error query': 'Query success')
+            res.send(rows)
        
         })
     }catch(e){
