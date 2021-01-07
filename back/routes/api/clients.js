@@ -15,7 +15,7 @@ db.connect((err) => {
         if(err){
             console.log(`Error ${err}`);
         } else{
-            console.log("Clients: Connected to DB");
+            console.log("Clients: Connected");
         }
     })
 

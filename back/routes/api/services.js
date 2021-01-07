@@ -35,11 +35,13 @@ try{
                         , EmployeeP.name as EmployeeName
                         , EmployeeP.patronamic as EmployeePatronamic
                         , service.price_list_id
+                        , service.state
                     FROM 
                     service join (car join owner on car.owner_id = owner.id) on service.car_id = car.id
                             join (client join person ClientP on client.person_id = ClientP.id) on service.client_id = client.id
                             join (employee join person EmployeeP on employee.person_id = EmployeeP.id) on service.employee_id = employee.id
-                    WHERE service.state = 1`, 
+                    WHERE service.state = 1
+                    order by id`, 
                                    // join price_list on service.price_list_id = price_list.id
             (err, rows) => {
                     console.log(err === true?'Error query': 'Query success')
@@ -60,6 +62,7 @@ router.put('/', jsonParser, async(req,res)=>{
 
 })// put insert
 router.post('/',jsonParser, async(req,res) => {
+
     try{
         await db.query(`UPDATE service 
                         SET id='${req.body.id}',car_id='${req.body.car_id}',client_id='${req.body.client_id}',
@@ -71,10 +74,6 @@ router.post('/',jsonParser, async(req,res) => {
     } catch(e){
         console.log(e);
     }
-
-
-
-
 })// porst Update
 
 router.delete('/', jsonParser, async(req,res) =>{

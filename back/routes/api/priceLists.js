@@ -51,8 +51,8 @@ router.post('/', jsonParser, async(req,res)=>{
     try{
         await db.query(`UPDATE price_list SET 
                         id = '${req.body.id}'
-                        , person.surname ='${req.body.type}'
-                        , person.name = '${req.body.price}'
+                        , type ='${req.body.type}'
+                        , price = '${req.body.price}'
                     WHERE id = '${req.body.id}' `,
     (rows) => {
             res.send(req.body)
