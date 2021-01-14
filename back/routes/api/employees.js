@@ -24,14 +24,14 @@ router.get('/', async (req, res) => {
 try{
     await db.query(`SELECT 
                         employee.id
+                        , employee.surname
+                        , employee.name
+                        , employee.patronamic
                         , employee.specialization
                         , employee.rank
                         , employee.expirience
                         , employee.state
-                        , person.surname as surname
-                        , person.name as name
-                        , person.patronamic as patronamic 
-                    FROM employee join person on employee.person_id = person.id
+                    FROM employee 
                     WHERE employee.state = 1`, 
                 (err, rows) => {
                 if(err){
@@ -52,8 +52,9 @@ try{
 router.put('/', jsonParser, async(req,res)=>{
     try{
         await db.query(`INSERT INTO employee 
-                            (expirience, person_id, rank, specialization, state) 
-                        VALUES ('${req.body.expirience}','${req.body.person_id}','${req.body.rank}',
+                            (surname,name,patronamic,expirience, rank, specialization, state) 
+                        VALUES ('${req.body.surname}', '${req.body.name}', '${req.body.patronamic}',
+                                '${req.body.expirience}','${req.body.rank}',
                                 '${req.body.specialization}','${req.body.state}')`)
     }catch(e){
         console.log(e);
@@ -64,8 +65,12 @@ router.put('/', jsonParser, async(req,res)=>{
 router.post('/',jsonParser, async(req, res)=>{
     try{
         await db.query(`UPDATE employee 
-                        SET id='${req.body.id}', expirience='${req.body.expirience}', 
-                            person_id='${req.body.person_id}', rank='${req.body.rank}',
+                        SET id='${req.body.id}',
+                            surname='${req.body.surname}', 
+                            name='${req.body.name}', 
+                            patronamic='${req.body.patronamic}',
+                            expirience='${req.body.expirience}', 
+                            rank='${req.body.rank}',
                             specialization='${req.body.specialization}',
                             state='${req.body.state}' 
                         WHERE id = '${req.body.id}'`)

@@ -4,7 +4,7 @@ const app = express()
 
 
 const body_parser = require('body-parser')
- const cors = require('cors')
+const cors = require('cors')
 
 app.use(body_parser.json())
 app.use(cors())
@@ -21,9 +21,7 @@ app.listen(port, () => {
 
 
 // Регистрация путей
-const persons = require('./routes/api/persons')
-app.use('/api/persons', persons)
-//
+
 
 const priceLists = require('./routes/api/priceLists')
 app.use('/api/priceLists', priceLists)
