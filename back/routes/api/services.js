@@ -20,46 +20,114 @@ try{
     })
 router.get('/', async (req, res) => {
 
-try{
-    await db.query(`SELECT
-                        service.id AS id
-                        , car.mark
-                        , car.gos_number
-                        , owner.type
-                        , client.surname as clientSurname
-                        , client.name as clientName
-                        , client.patronamic as clientPatronamic
-                        , employee.surname as EmployeeSurname
-                        , employee.name as EmployeeName
-                        , employee.patronamic as EmployeePatronamic
-                        , service.date_start_repairs as start 
-                        , service.date_finish_repairs as finish 
-                        , price_list_id
-                        , service.state as serviceState
-                    FROM
-                        service
-                    JOIN (car join owner on car.owner_id = owner.id) on service.car_id = car.id
-                    JOIN CLIENT ON service.client_id = CLIENT.id
-                    JOIN employee ON service.employee_id = employee.id
-                    WHERE
-                        service.state = '1'
-                    ORDER BY
-                        service.id`, 
+    switch (req.query.state) {
+        case '1':
+            try{
+                await db.query(`SELECT
+                                    service.id AS id
+                                    , car.mark
+                                    , car.gos_number
+                                    , owner.type
+                                    , client.surname as clientSurname
+                                    , client.name as clientName
+                                    , client.patronamic as clientPatronamic
+                                    , employee.surname as EmployeeSurname
+                                    , employee.name as EmployeeName
+                                    , employee.patronamic as EmployeePatronamic
+                                    , service.date_start_repairs as start 
+                                    , service.date_finish_repairs as finish 
+                                    , price_list_id
+                                    , service.state as serviceState
+                                FROM
+                                    service
+                                JOIN (car join owner on car.owner_id = owner.id) on service.car_id = car.id
+                                JOIN CLIENT ON service.client_id = CLIENT.id
+                                JOIN employee ON service.employee_id = employee.id
+                                WHERE
+                                    service.state = '1'
+                                ORDER BY
+                                    service.id`, 
+                        (err, rows) => {
+                                console.log(err === true?'Error query': 'Query success')
+                                res.send(rows)
+                        })
+    
+            } catch(e){
+                console.log(e);
+            }
+            break;
+        case '2':
+            try{
+                await db.query(`SELECT
+                                    service.id AS id
+                                    , car.mark
+                                    , car.gos_number
+                                    , owner.type
+                                    , client.surname as clientSurname
+                                    , client.name as clientName
+                                    , client.patronamic as clientPatronamic
+                                    , employee.surname as EmployeeSurname
+                                    , employee.name as EmployeeName
+                                    , employee.patronamic as EmployeePatronamic
+                                    , service.date_start_repairs as start 
+                                    , service.date_finish_repairs as finish 
+                                    , price_list_id
+                                    , service.state as serviceState
+                                FROM
+                                    service
+                                JOIN (car join owner on car.owner_id = owner.id) on service.car_id = car.id
+                                JOIN CLIENT ON service.client_id = CLIENT.id
+                                JOIN employee ON service.employee_id = employee.id
+                                WHERE
+                                    service.state = '2'
+                                ORDER BY
+                                    service.id`, 
+                        (err, rows) => {
+                                console.log(err === true?'Error query': 'Query success')
+                                res.send(rows)
+                        })
+    
+            } catch(e){
+                console.log(e);
+            }
+            break;
+        case '3':
+            try{
+                await db.query(`SELECT
+                                    service.id AS id
+                                    , car.mark
+                                    , car.gos_number
+                                    , owner.type
+                                    , client.surname as clientSurname
+                                    , client.name as clientName
+                                    , client.patronamic as clientPatronamic
+                                    , employee.surname as EmployeeSurname
+                                    , employee.name as EmployeeName
+                                    , employee.patronamic as EmployeePatronamic
+                                    , service.date_start_repairs as start 
+                                    , service.date_finish_repairs as finish 
+                                    , price_list_id
+                                    , service.state as serviceState
+                                FROM
+                                    service
+                                JOIN (car join owner on car.owner_id = owner.id) on service.car_id = car.id
+                                JOIN CLIENT ON service.client_id = CLIENT.id
+                                JOIN employee ON service.employee_id = employee.id
+                                WHERE
+                                    service.state = '3'
+                                ORDER BY
+                                    service.id`, 
+                        (err, rows) => {
+                                console.log(err === true?'Error query': 'Query success')
+                                res.send(rows)
+                        })
+    
+            } catch(e){
+                console.log(e);
+            }
+            break;
+    }
 
-            (err, rows) => {
-                    console.log(err === true?'Error query': 'Query success')
-                    res.send(rows)
-            })
-
-                        // client.surname AS clientSurname,
-                        // client.name AS clientName,
-                        // client.patronamic AS clientPatronamic,
-                        // employee.surname AS EmployeeSurname,
-                        // employee.name AS EmployeeName,
-                        // employee.patronamic AS EmployeePatronamic,
-} catch(e){
-    console.log(e);
-}
         
 }) // get select
 router.put('/', jsonParser, async(req,res)=>{
@@ -84,7 +152,7 @@ router.post('/',jsonParser, async(req,res) => {
     } catch(e){
         console.log(e);
     }
-})// porst Update
+})// post Update
 
 router.delete('/', jsonParser, async(req,res) =>{
     try{

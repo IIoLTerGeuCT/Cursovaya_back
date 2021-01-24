@@ -4,9 +4,6 @@ const mysql = require('mysql2')
 const router = express.Router()
 const jsonParser = express.json()
 
-
-
-
 try{
     const db = mysql.createConnection({
         host: 'localhost',

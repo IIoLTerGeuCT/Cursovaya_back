@@ -36,10 +36,10 @@ try{
                     WHERE client.state = 1`, 
         (err, rows) => {
             res.send(rows)
-})
+        })
     }catch(e){
         console.log(e);
-    }
+} //try-catch
    
 }) //get select
 router.put('/', jsonParser,async(req,res) => {

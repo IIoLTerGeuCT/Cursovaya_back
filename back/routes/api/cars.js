@@ -40,6 +40,7 @@ router.get('/', async (req, res) => {
     }catch(e){
         console.log(e);
     }
+
 })
 router.put('/', jsonParser, async(req,res) => {
     try{
