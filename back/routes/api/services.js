@@ -141,17 +141,33 @@ router.put('/', jsonParser, async(req,res)=>{
 })// put insert
 router.post('/',jsonParser, async(req,res) => {
 
-    try{
-        await db.query(`UPDATE service 
-                        SET id='${req.body.id}',car_id='${req.body.car_id}',client_id='${req.body.client_id}',
-                            date_finish_repairs='${req.body.date_finish_repairs}',
-                            date_start_repairs='${req.body.date_start_repairs}',
-                            employee_id='${req.body.employee_id}', price_list_id='${req.body.price_list_id}',
-                            state='${req.body.state}' 
-                        WHERE id = '${req.body.id}'`)
-    } catch(e){
-        console.log(e);
-    }
+    // if(req.body.id !== undefined & req.body.state !== undefined){
+    //     try{
+    //         await db.query(`UPDATE service 
+    //                         SET service.state='${req.body.state}' 
+    //                         WHERE service.id = '${req.body.id}'`)
+    //         } catch(e){
+    //             console.log(e);
+    //         }
+    //     res.send({"id":`${req.body.id}`,"state":`${req.body.state}`})
+    //     res.send(`Данные успешно изменены!!!`)
+    // }
+   
+            try{
+                await db.query(`UPDATE service 
+                                SET id='${req.body.id}',car_id='${req.body.car_id}',client_id='${req.body.client_id}',
+                                    date_finish_repairs='${req.body.date_finish_repairs}',
+                                    date_start_repairs='${req.body.date_start_repairs}',
+                                    employee_id='${req.body.employee_id}', price_list_id='${req.body.price_list_id}',
+                                    state='${req.body.state}' 
+                                WHERE id = '${req.body.id}'`)
+            } catch(e){
+                console.log(e);
+            }
+          
+
+   
+   
 })// post Update
 
 router.delete('/', jsonParser, async(req,res) =>{
