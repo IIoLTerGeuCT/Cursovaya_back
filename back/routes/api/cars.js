@@ -33,13 +33,10 @@ router.get('/', async (req, res) => {
         car join owner on car.owner_id = owner.id 
     WHERE car.state = 1`, 
         (err, rows) => {
-            console.log(err === true?'Error query': 'Query success')
             res.send(rows)
        
         })
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){ }
 
 })
 router.put('/', jsonParser, async(req,res) => {
@@ -50,9 +47,7 @@ router.put('/', jsonParser, async(req,res) => {
                             ('${req.body.color}', '${req.body.gos_number}', 
                             '${req.body.mark}', '${req.body.owner_id}', 
                             '${req.body.state}', '${req.body.year_production}')`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 })
 router.post('/', jsonParser, async(req,res)=> {
     try{
@@ -62,9 +57,7 @@ router.post('/', jsonParser, async(req,res)=> {
                             owner_id='${req.body.owner_id}',state='${req.body.state}',
                             year_production='${req.body.year_production}' 
                         WHERE id = '${req.body.id}'`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 })
 router.delete('/',jsonParser, async(req, res)=> {
     try{
@@ -73,14 +66,11 @@ router.delete('/',jsonParser, async(req, res)=> {
             console.log(`Remove item id = ${req.query.id}`);
          })
 
-    }catch(e){
-        console.log(e)}
+    }catch(e){}
 
 })
 
-}catch(e){
-    console.log(e);
-}
+}catch(e){}
 
 
 

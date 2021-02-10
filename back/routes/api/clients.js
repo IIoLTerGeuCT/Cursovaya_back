@@ -37,9 +37,7 @@ try{
         (err, rows) => {
             res.send(rows)
         })
-    }catch(e){
-        console.log(e);
-} //try-catch
+    }catch(e){} //try-catch
    
 }) //get select
 router.put('/', jsonParser,async(req,res) => {
@@ -51,9 +49,7 @@ router.put('/', jsonParser,async(req,res) => {
                                 '${req.body.date_born}','${req.body.habitation}',
                                 '${req.body.pass_id}', '${req.body.state}')`)
 
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 
 }) // put add
 router.post('/', jsonParser, async(req,res) => {
@@ -68,19 +64,13 @@ router.post('/', jsonParser, async(req,res) => {
                             pass_id='${req.body.pass_id}',
                             state='${req.body.state}' 
                         WHERE id = '${req.body.id}'`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 }) // post update
 router.delete('/', jsonParser, async(req,res)=>{
     try{
         await db.query(`DELETE FROM client WHERE id = '${req.query.id}'`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 }) // delete 
 
-}catch(e){
-    console.log(e);
-}
+}catch(e){}
 module.exports = router

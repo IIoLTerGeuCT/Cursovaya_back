@@ -22,13 +22,9 @@ router.get('/', async (req, res) => {
     try{
         await db.query("SELECT id, type, price FROM price_list", 
         (err, rows) => {
-           
-                res.send(rows)
-
+            res.send(rows)
         })
-    } catch(e){
-        console.log(e)
-    }
+    } catch(e){}
     
 })
 // Добавление данных в таблицу price_list
@@ -40,9 +36,7 @@ router.put('/',jsonParser, async(req,res)=> {
                         VALUES 
                                 ('${req.body.type}'
                                 ,'${req.body.price}')`)
-    }catch(e){
-        console.log(e)
-    }
+    }catch(e){}
     
 })
 
@@ -57,24 +51,20 @@ router.post('/', jsonParser, async(req,res)=>{
     (rows) => {
             res.send(req.body)
     })
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
     
 })
 
 router.delete('/', async(req,res) =>{
     try{
         await db.query(`DELETE FROM price_list WHERE id = '${req.query.id}'`, 
-            (rows) => {
-               console.log(`Remove item id = ${req.query.id}`);
-            }
+            (rows) => { }
         )
-    }catch(e){console.log(e)}
+    }catch(e){}
 
 })
 
-} catch(e){console.log(e);}
+} catch(e){}
 
 
 module.exports = router

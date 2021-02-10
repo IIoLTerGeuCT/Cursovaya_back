@@ -60,10 +60,9 @@ router.get('/',jsonParser, async (req, res) => {
                                             service.state = '1'
                                         ORDER BY service.id `,
                             (err, rows) => { 
-                                console.log(err === true ? 'Error query' : 'Query success: case 1'); 
                                 res.send(rows) 
                         })
-                                    break
+                        break
                     case '2':
                         await db.query(`SELECT
                                             service.id AS id
@@ -89,10 +88,9 @@ router.get('/',jsonParser, async (req, res) => {
                                             service.state = '1'
                                         order by mark`,
                             (err, rows) => { 
-                                console.log(err === true ? 'Error query' : 'Query success: case 2'); 
                                 res.send(rows) 
                         })
-                                    break
+                        break
                     case '3': 
                             await db.query(`SELECT
                                                 service.id AS id
@@ -118,7 +116,6 @@ router.get('/',jsonParser, async (req, res) => {
                                                 service.state = '1'
                                                 order by clientSurname`,
                                     (err, rows) => { 
-                                        console.log(err === true ? 'Error query' : 'Query success: case 3'); 
                                         res.send(rows) 
                                 })
                         break
@@ -147,7 +144,6 @@ router.get('/',jsonParser, async (req, res) => {
                                             service.state = '1'
                                                 order by EmployeeSurname`,
                                     (err, rows) => { 
-                                        console.log(err === true ? 'Error query' : 'Query success: case 4'); 
                                         res.send(rows) 
                                 })
                         break
@@ -176,7 +172,6 @@ router.get('/',jsonParser, async (req, res) => {
                                             service.state = '1'
                                                 order by start`,
                                     (err, rows) => { 
-                                        console.log(err === true ? 'Error query' : 'Query success: case 5') 
                                         res.send(rows) 
                                 })
                         break
@@ -205,7 +200,6 @@ router.get('/',jsonParser, async (req, res) => {
                                             service.state = '1'
                                                 order by finish`,
                                     (err, rows) => { 
-                                        console.log(err === true ? 'Error query' : 'Query success: case 6'); 
                                         res.send(rows) 
                                 })
                         break;
@@ -214,12 +208,10 @@ router.get('/',jsonParser, async (req, res) => {
                         break
                     }
                 }
-            } catch(e){ console.log(e) } // try-catch
+            } catch(e){} // try-catch
         } //callback
     )  // get
-} catch(e){ 
-    console.log(e)
-}
+} catch(e){ }
    
 
 

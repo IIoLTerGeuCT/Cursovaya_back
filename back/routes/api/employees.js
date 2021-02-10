@@ -32,20 +32,11 @@ try{
                         , employee.expirience
                         , employee.state
                     FROM employee 
-                    WHERE employee.state = 1`, 
-                (err, rows) => {
-                if(err){
-                    console.log('Error query')
-                } else {
-                    console.log("Query success")
-                    res.send(rows)
-                }
-})
-
-
-}catch(e){
-    console.log(e);
-}
+                    WHERE employee.state = 1`,(err, rows) => {
+                        res.send(rows)
+                    })
+    }catch(e){}
+    
        
 })// get select
 
@@ -56,9 +47,7 @@ router.put('/', jsonParser, async(req,res)=>{
                         VALUES ('${req.body.surname}', '${req.body.name}', '${req.body.patronamic}',
                                 '${req.body.expirience}','${req.body.rank}',
                                 '${req.body.specialization}','${req.body.state}')`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 
 })// put insert
 
@@ -74,9 +63,7 @@ router.post('/',jsonParser, async(req, res)=>{
                             specialization='${req.body.specialization}',
                             state='${req.body.state}' 
                         WHERE id = '${req.body.id}'`)
-    }catch(e){
-        console.log(e);
-    }
+    }catch(e){}
 }) // post update
 
 router.delete('/', jsonParser, async(req,res) =>{
@@ -85,14 +72,10 @@ router.delete('/', jsonParser, async(req,res) =>{
         (rows) => {
             console.log(`Remove item id = ${req.query.id}`);
         })
-       }catch(e){
-        console.log(e);
-    }
+       }catch(e){}
 
 })// delete
 
-} catch(e){
-    console.log(e);
-}
+} catch(e){}
 
 module.exports = router

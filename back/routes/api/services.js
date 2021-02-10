@@ -48,13 +48,10 @@ router.get('/', async (req, res) => {
                                 ORDER BY
                                     service.id`, 
                         (err, rows) => {
-                                console.log(err === true?'Error query': 'Query success')
                                 res.send(rows)
                         })
     
-            } catch(e){
-                console.log(e);
-            }
+            } catch(e){  }
             break;
         case '2':
             try{
@@ -83,13 +80,10 @@ router.get('/', async (req, res) => {
                                 ORDER BY
                                     service.id`, 
                         (err, rows) => {
-                                console.log(err === true?'Error query': 'Query success')
                                 res.send(rows)
                         })
     
-            } catch(e){
-                console.log(e);
-            }
+            } catch(e){  }
             break;
         case '3':
             try{
@@ -118,13 +112,10 @@ router.get('/', async (req, res) => {
                                 ORDER BY
                                     service.id`, 
                         (err, rows) => {
-                                console.log(err === true?'Error query': 'Query success')
                                 res.send(rows)
                         })
     
-            } catch(e){
-                console.log(e);
-            }
+            } catch(e){  }
             break;
     }
 
@@ -136,38 +127,32 @@ router.put('/', jsonParser, async(req,res)=>{
                             (car_id, client_id, date_finish_repairs, date_start_repairs, employee_id, price_list_id, state)
                         VALUES ('${req.body.car_id}','${req.body.client_id}','${req.body.date_finish_repairs}',
                                 '${req.body.date_start_repairs}','${req.body.employee_id}','${req.body.price_list_id}','${req.body.state}')`)
-    }catch(e){console.log(e);}
+    }catch(e){}
 
 })// put insert
 router.post('/',jsonParser, async(req,res) => {
 
-    // if(req.body.id !== undefined & req.body.state !== undefined){
-    //     try{
-    //         await db.query(`UPDATE service 
-    //                         SET service.state='${req.body.state}' 
-    //                         WHERE service.id = '${req.body.id}'`)
-    //         } catch(e){
-    //             console.log(e);
-    //         }
-    //     res.send({"id":`${req.body.id}`,"state":`${req.body.state}`})
-    //     res.send(`Данные успешно изменены!!!`)
-    // }
-   
-            try{
-                await db.query(`UPDATE service 
-                                SET id='${req.body.id}',car_id='${req.body.car_id}',client_id='${req.body.client_id}',
-                                    date_finish_repairs='${req.body.date_finish_repairs}',
-                                    date_start_repairs='${req.body.date_start_repairs}',
-                                    employee_id='${req.body.employee_id}', price_list_id='${req.body.price_list_id}',
-                                    state='${req.body.state}' 
-                                WHERE id = '${req.body.id}'`)
-            } catch(e){
-                console.log(e);
-            }
-          
-
-   
-   
+    console.log(typeof(req.body.update));
+    // 1. Состояние изменения всех данных
+    // 2. Состояние изменения только статуса заявки
+    if(req.body.update === true){
+        try{
+            await db.query(`UPDATE service 
+                            SET id='${req.body.id}',car_id='${req.body.car_id}',client_id='${req.body.client_id}',
+                                date_finish_repairs='${req.body.date_finish_repairs}',
+                                date_start_repairs='${req.body.date_start_repairs}',
+                                employee_id='${req.body.employee_id}', price_list_id='${req.body.price_list_id}',
+                                state='${req.body.state}' 
+                            WHERE id = '${req.body.id}'`)
+         } catch(e){}
+    }
+    if(req.body.update === false){
+        try{
+            await db.query(`UPDATE service 
+                            SET service.state='${req.body.state}' 
+                            WHERE service.id = '${req.body.id}'`)
+            } catch(e){ }
+    }
 })// post Update
 
 router.delete('/', jsonParser, async(req,res) =>{
@@ -176,29 +161,10 @@ router.delete('/', jsonParser, async(req,res) =>{
         (rows) => {
             console.log(`Remove item id = ${req.query.id}`);
         })
-       }catch(e){
-        console.log(e);
-    }
+       }catch(e){}
 
 })// delete
 
-
-
-
-
-
-
-
-
-
-} catch(e) {
-    console.log(e);
-}
-
-
-
-
-
-
+} catch(e) {}
 
 module.exports = router

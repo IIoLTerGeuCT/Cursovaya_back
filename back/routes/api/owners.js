@@ -20,21 +20,10 @@ router.get('/', async (req, res) => {
             console.log("Owner: Connected");
         }
     })
-    await db.query(`SELECT 
-                    id
-                    , type
-                FROM 
-                    owner `, 
-        (err, rows) => {
-      
-            if(err){
-                console.log('Error query')
-            } else {
-                console.log("Query success")
-                res.send(rows)
-            }
-       
-        })
+    await db.query(`SELECT id, type
+                    FROM 
+                        owner `, 
+        (err, rows) => { })
 })
 
 
