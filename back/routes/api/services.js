@@ -81,8 +81,8 @@ router.get('/', async (req, res) => {
                                     service.id`, 
                         (err, rows) => {
                                 res.send(rows)
-                        })
-    
+                        }
+                )
             } catch(e){  }
             break;
         case '3':
