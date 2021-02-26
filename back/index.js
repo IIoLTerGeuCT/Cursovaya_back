@@ -1,5 +1,4 @@
 const express = require('express') // Подключаем express 
-const mysql = require('mysql2') 
 const app = express()
 
 
@@ -10,18 +9,15 @@ app.use(body_parser.json())
 app.use(cors())
 
 
-// Порт для прослышки
+// Порт для прослушки
 const port = process.env.PORT || 3001
-// Прослушивание порта
+// Старт сервера
 app.listen(port, () => {
     console.log( `Server started ${port}`);
 })
 
 
-
-
 // Регистрация путей
-
 
 const priceLists = require('./routes/api/priceLists')
 app.use('/api/priceLists', priceLists)

@@ -50,14 +50,17 @@ router.put('/', jsonParser, async(req,res) => {
     }catch(e){}
 })
 router.post('/', jsonParser, async(req,res)=> {
-    try{
-        await db.query(`UPDATE car SET 
-                            id='${req.body.id}', color='${req.body.color}',
-                            gos_number='${req.body.gos_number}',mark='${req.body.mark}',
-                            owner_id='${req.body.owner_id}',state='${req.body.state}',
-                            year_production='${req.body.year_production}' 
-                        WHERE id = '${req.body.id}'`)
-    }catch(e){}
+    res.send(req.body)
+    // try{
+    //     await db.query(`UPDATE car SET 
+    //                         id='${req.body.id}', color='${req.body.color}',
+    //                         gos_number='${req.body.gos_number}',mark='${req.body.mark}',
+    //                         owner_id='${req.body.owner_id}',state='${req.body.state}',
+    //                         year_production='${req.body.year_production}' 
+    //                     WHERE id = '${req.body.id}'`)
+    // }catch(e){
+    //     console.log(e);
+    // }
 })
 router.delete('/',jsonParser, async(req, res)=> {
     try{
